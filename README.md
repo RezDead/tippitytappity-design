@@ -9,7 +9,10 @@ tippitytappity is a program to practice typing
 classDiagram
   Tester --> ResultGenerator
   UI --> Tester
+  UI --> User
   ResultGenerator --> UI
+  testScoreStruct --> History
+  ResultGenerator --> History
   class Tester{
     - input: string
     - startTime: time
@@ -28,6 +31,21 @@ classDiagram
   }
   class UI{
     +updateDisplay()
+  }
+  class History{
+    - history: Map<userID, testScoreStruct>
+    + GetHistory(user: userID) vector<testScoreStruct>
+    + AddHistory(user: userID, testHistory: testScoreStruct)
+  }
+  class testScoreStruct{
+    + accuracy: float
+    + totalTime: float
+  }
+  class User{
+    - ID: userID
+    + NewUser()
+    + Login(username: string, password: string)
+    + Logout()
   }
 
 ```
